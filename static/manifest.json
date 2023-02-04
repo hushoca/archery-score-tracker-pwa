@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "short_name": "Archery Score Tracker",
+    "name": "Archery Score Tracker",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "favicon.svg",
+        "type": "image/svg+xml",
+        "sizes": "any",
+        "purpose": "any"
+      }
+    ],
+    "display": "standalone",
+    "background_color": "#60a5fa",
+    "scope": "/",
+    "theme_color": "#60a5fa",
+    "shortcuts": [
+      {
+        "name": "Start Scoring",
+        "short_name": "Score",
+        "description": "Start a new score pad",
+        "url": "/score?source=pwa",
+        "icons": [{ "src": "/quill.svg", "sizes": "any" }]
+      }
+    ],
+    "description": "Application to keep track of your archery scores"
+}

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Roboto;
+    src: url("/fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: Roboto;
+    font-weight: bold;
+    src: url("/fonts/Roboto-Bold.ttf");
+}
+
+body {
+    font-family: Roboto;
+    height: 100vh;
+}
