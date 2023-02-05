@@ -67,7 +67,7 @@ export const arrowsShotThisWeek = derived(sessionsStore, ({ sessions }) => {
     const result = new Map<Days, number>(allDays.map(d => ([d, 0])));
     forEachCompletedSessionThisWeek(sessions, (session, sessionWeekday) => {
         const existingScore = result.get(sessionWeekday) ?? 0;
-        result.set(sessionWeekday, existingScore + session.arrowsPerSet * session.setCount);
+        result.set(sessionWeekday, existingScore + session.arrowsPerSet * session.sets.length);
     })
     return result;
 });
@@ -104,7 +104,7 @@ export const totalsAllTime = derived(sessionsStore, ({ sessions }) => {
     let highestScore = 0;
     sessions.forEach(s => {
         if(s.finishedAt === undefined) return;
-        totalArrows += s.arrowsPerSet * s.setCount;
+        totalArrows += s.arrowsPerSet * s.sets.length;
         highestScore = Math.max(highestScore, s.score);
     })
     return {
@@ -120,7 +120,7 @@ export const totalsThisWeek = derived(sessionsStore, ({ sessions }) => {
     let count = 0;
     forEachCompletedSessionThisWeek(sessions, s => {
         if(s.finishedAt === undefined) return;
-        totalArrows += s.arrowsPerSet * s.setCount;
+        totalArrows += s.arrowsPerSet * s.sets.length;
         highestScore = Math.max(highestScore, s.score);
         count++;
     })
@@ -136,7 +136,7 @@ export const arrowsShotThisYear = derived(sessionsStore, ({ sessions }) => {
     const result = new Map<Months, number>(allMonths.map(d => ([d, 0])));
     forEachCompletedSessionThisYear(sessions, (session, sessionMonth) => {
         const existingScore = result.get(sessionMonth) ?? 0;
-        result.set(sessionMonth, existingScore + session.arrowsPerSet * session.setCount);
+        result.set(sessionMonth, existingScore + session.arrowsPerSet * session.sets.length);
     })
     return result;
 });

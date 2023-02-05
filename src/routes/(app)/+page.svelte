@@ -1,10 +1,24 @@
-<script>
+<script lang="ts">
     import SessionElem from "@components/Session.svelte";
     import CircularButton from "@components/CircularButton.svelte";
-    import { activeSession, deleteSession, sessionsStore, totalsAllTime, totalsThisWeek} from "@stores/sessions";
+    import { activeSession, sessionsStore, totalsAllTime, totalsThisWeek} from "@stores/sessions";
+    import type { Session } from "../../types";
 
     let allTime = $totalsAllTime;
     let thisWeek = $totalsThisWeek;
+
+    function getLastXSessions(sessions : Session[], target : number) {
+        let count = 0;
+        const last5Sessions : Session[] = [];
+        for(let i = sessions.length - 1; i >= 0; i--) {
+            count++;
+            last5Sessions.push(sessions[i]);
+            if(count == target) break;
+        }
+        return last5Sessions;
+    }
+    
+    const sessions = getLastXSessions($sessionsStore.sessions, 4);
 </script>
 
 <main class="grid grid-cols-2 grid-rows-[auto_1fr] gap-3 grow p-4 text-center items-start pb-28">
@@ -21,13 +35,16 @@
         <div class="text-left font-bold">Max Score:</div>   <div class="text-right">{thisWeek.highestScore}</div>
     </section>
     <section class="bg-blue-50 rounded-lg shadow-lg p-2 col-start-1 col-end-3 h-full row-start-2 row-end-3">
-        <div class="text-xl font-bold">Sessions</div>
-        {#each $sessionsStore.sessions as session}
+        {#each sessions as session}
             <SessionElem {session} />
         {:else}
             <span>No previous sessions were found.<br/> Go start shooting you lazy bum!</span>
         {/each}
-        <div></div>
+        {#if $sessionsStore.sessions.length > 4}
+            <div class="pt-4 p-2 border-t border-t-blue-800 border-dotted">
+                <a class="border-2 border-blue-800 rounded-sm p-2 px-4" href="/sessions">View More</a>
+            </div>
+        {/if}
     </section>
 </main>
 <footer class="fixed left-0 right-0 bottom-0 pb-4 flex justify-center gap-2 items-end">

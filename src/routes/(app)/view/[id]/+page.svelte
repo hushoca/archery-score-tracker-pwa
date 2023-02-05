@@ -27,7 +27,7 @@
         <span class="text-left overflow-hidden text-ellipsis whitespace-nowrap">{session.name}</span>
         <span class="text-right">{duration}</span>
     </div>
-    <SetsView startedAt={session.startedAt} sets={session.sets} setCount={session.setCount} arrowCount={session.arrowsPerSet} />
+    <SetsView mode="View" startedAt={session.startedAt} sets={session.sets} setCount={session.setCount} arrowCount={session.arrowsPerSet} />
     <footer class="pb-4 shadow-sm flex justify-center gap-2 items-end fixed bottom-0 w-full">
         <CircularButton icon="return" color="gray" href="/"/>
         <CircularButton icon="trash" color="red" on:click={remove} />

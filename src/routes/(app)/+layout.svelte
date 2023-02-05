@@ -8,7 +8,7 @@
     <title>Archery Score Tracker</title>
 </svelte:head>
 
-<main class="text-blue-900 bg-gradient-to-b from-blue-100 min-h-screen to-blue-300 overflow-auto">
+<main class="text-blue-900 bg-gradient-to-b from-blue-200 min-h-screen to-indigo-200 overflow-auto">
     {#if $mobile}
         <slot />
     {:else}

@@ -85,8 +85,7 @@
     <span class="text-left overflow-hidden text-ellipsis whitespace-nowrap">{$activeSession?.name}</span>
     <span class="text-right">{clock}</span>
 </div>
-<SetsView startedAt={startedAtMillis} {sets} {setCount} {arrowCount} setClickable={true} on:setClicked={openEditSetModal} />
-
+<SetsView mode="InProgress" startedAt={startedAtMillis} {sets} {setCount} {arrowCount} setClickable={true} on:setClicked={openEditSetModal} />
 {#if mode == "add"}
     <AddScoreModal mode="Add" title="New Set" arrowCount={arrowCount} on:discard={() => mode = "hidden"} on:done={newSet} />
 {:else if mode == "edit"}
@@ -95,10 +94,13 @@
 {:else if mode == "hidden"}
     <footer class="pb-4 shadow-sm flex justify-center gap-2 items-end fixed bottom-0 w-full">
         <CircularButton icon="return" color="gray" href="/"/>
-        {#if setCount == sets.length}
-            <CircularButton icon="check" color="emerald" size="lg" href="/score/complete"/>
-        {:else}
+        {#if setCount != sets.length}
             <CircularButton icon="plus"  size="lg" on:click={() => mode = "add"}/>
+        {:else}
+            <CircularButton icon="check" color="emerald" size="lg" href="/score/complete"/>
+        {/if}
+        {#if setCount == null}
+            <CircularButton icon="check" color="emerald" size="lg" on:click={() => confirm("Are you sure you want to complete this session?") && goto("/score/complete")}/>
         {/if}
         <CircularButton icon="x" color="red" on:click={discard} />
     </footer>

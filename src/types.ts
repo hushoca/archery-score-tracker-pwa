@@ -26,7 +26,7 @@ export interface Set {
 export interface Session {
     id: string;
     arrowsPerSet: number;
-    setCount: number;
+    setCount: number | null;
     name?: string;
     startedAt : number;
     finishedAt? : number;

@@ -7,10 +7,12 @@
 
     export let startedAt : number;
     export let sets : Set[];
-    export let setCount : number | undefined;
+    export let setCount : number | null;
     export let arrowCount : number;
 
     export let setClickable : boolean = false;
+
+    export let mode : "View" | "InProgress";
 
     let total = 0;
     $: if(sets) {
@@ -36,22 +38,33 @@
             <SetElem {index} {set} {startedAt} />
         {/if}
     {/each}
-    <section class="bg-blue-50 rounded-lg shadow-lg p-2 w-full text-xl flex justify-around">
-        <div>
-            <span class="font-bold">Sets:</span>
-            {#if setCount}
-                <span>{sets.length}/{setCount}</span>
-            {:else}
-                <span>{sets.length}</span>
+    <section class="bg-blue-50 rounded-lg shadow-lg p-2 px-4 w-full flex justify-between items-center">
+        <div class="flex flex-col">
+            <div class="text-left">
+                <span class="font-bold">Sets:</span>
+                {#if setCount && mode == "InProgress"}
+                    <span>{sets.length}/{setCount}</span>
+                {:else}
+                    <span>{sets.length}</span>
+                {/if}
+            </div>
+            <div class="text-left">
+                <span class="font-bold">Average Set:</span>
+                <span>{total == 0 ? 0 :(total / sets.length).toFixed(1)}</span>
+            </div>
+            {#if setCount && mode == "InProgress"}
+                <div class="text-left">
+                    <span class="font-bold">Max Viable Score:</span>
+                    <span>{ arrowCount * 10 * (setCount - sets.length) + total}</span>
+                </div>
             {/if}
         </div>
-        <div>
-            <span class="font-bold">Score:</span>
+        <div class="text-right text-3xl row-span-2 flex items-center justify-end">
             {#if setCount}
                 <span>{total}/{arrowCount * setCount * 10}</span>
             {:else}
-                <span>{total}</span>
-            {/if}            
+                <span>{total}/{arrowCount * sets.length * 10}</span>
+            {/if}       
         </div>
     </section>
 </main>
