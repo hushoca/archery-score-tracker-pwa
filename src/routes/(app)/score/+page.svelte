@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
-    import { onMount } from 'svelte';
-    import AddScoreModal from '../../../components/AddScoreModal.svelte';
-    import CircularButton from "../../../components/CircularButton.svelte";
-    import Set from "../../../components/Set.svelte"
-    import { activeSession } from '../../../stores/sessions';
-    import { allPoints, type Point } from '../../../types';
+    import { goto } from "$app/navigation";
+    import { onMount } from "svelte";
+    import AddScoreModal from '@components/AddScoreModal.svelte';
+    import CircularButton from "@components/CircularButton.svelte";
+    import Set from "@components/Set.svelte"
+    import { activeSession } from "@stores/sessions";
+    import { allPoints, type Point } from "../../../types";
     import { DateTime } from "luxon"
 
     let setCount = $activeSession!.setCount;
@@ -56,7 +56,7 @@
 </div>
 <main class="flex flex-col gap-2 grow p-2 text-center items-center mb-28">
     {#each sets as points, index}
-        <Set arrowCount={arrowCount} {index} {points} />
+        <Set {index} {points} />
     {/each}
     <section class="bg-blue-50 rounded-lg shadow-lg p-2 w-full text-xl flex justify-around">
         <div>

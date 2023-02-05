@@ -1,7 +1,7 @@
 <script lang="ts">
     import "../../app.css";
     import qrCode from "../../qr-code.svg"
-    import { mobile } from "../../stores/mobile";
+    import { mobile } from "@stores/mobile";
 </script>
 
 <svelte:head>

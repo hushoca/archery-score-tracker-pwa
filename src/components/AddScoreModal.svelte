@@ -2,7 +2,7 @@
     import { createEventDispatcher } from 'svelte';
     import { fade } from 'svelte/transition';
     import { allPoints, orderedPoints, type Point } from '../types';
-    import CircularButton from './CircularButton.svelte';
+    import CircularButton from '@components/CircularButton.svelte';
 
     const dispatch = createEventDispatcher();
     

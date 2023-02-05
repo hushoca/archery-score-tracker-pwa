@@ -1,6 +1,6 @@
 <script>
-    import CircularButton from "../../components/CircularButton.svelte";
-    import Tabs from "../../components/Tabs.svelte";
+    import CircularButton from "@components/CircularButton.svelte";
+    import Tabs from "@components/Tabs.svelte";
     import ThisWeekGraphs from "./(tabs)/ThisWeekGraphs.svelte";
     import ThisYearGraphs from "./(tabs)/ThisYearGraphs.svelte";
 </script>

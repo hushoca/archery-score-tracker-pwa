@@ -3,7 +3,7 @@
     import { DateTime } from "luxon"
     import humanize from "humanize-duration"
     import { createEventDispatcher } from "svelte";
-    import { clickOutside } from "../util/clickOutside";
+    import { clickOutside } from "@util/clickOutside";
 
     const dispatch = createEventDispatcher();
 

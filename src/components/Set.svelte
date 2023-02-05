@@ -3,7 +3,6 @@
 
     export let index : number;
     export let points : Point[];
-    export let arrowCount : number;
 
     let total = 0;
     points.forEach(s => {

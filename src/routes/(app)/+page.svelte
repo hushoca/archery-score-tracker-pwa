@@ -1,7 +1,7 @@
 <script>
-    import SessionElem from "../../components/Session.svelte";
-    import CircularButton from "../../components/CircularButton.svelte";
-    import { activeSession, deleteSession, sessionsStore, totalsAllTime, totalsThisWeek} from "../../stores/sessions";
+    import SessionElem from "@components/Session.svelte";
+    import CircularButton from "@components/CircularButton.svelte";
+    import { activeSession, deleteSession, sessionsStore, totalsAllTime, totalsThisWeek} from "@stores/sessions";
 
     let allTime = $totalsAllTime;
     let thisWeek = $totalsThisWeek;

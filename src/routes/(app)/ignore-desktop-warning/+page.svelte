@@ -1,6 +1,6 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { mobile } from "../../../stores/mobile";
+    import { mobile } from "@stores/mobile";
 
     mobile.set(true);
     goto("/");

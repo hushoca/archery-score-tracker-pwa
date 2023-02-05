@@ -1,9 +1,8 @@
-import { browser } from "$app/environment";
 import { DateTime } from "luxon"
 
-import { derived, get, writable, type Writable } from "svelte/store";
+import { derived, get, writable } from "svelte/store";
 import { allDays, allMonths, allPoints, type Days, type Months, type Session } from "../types";
-import { persist } from "../util/persist";
+import { persist } from "@util/persist";
 
 interface SessionStore {
     sessions : Session[];

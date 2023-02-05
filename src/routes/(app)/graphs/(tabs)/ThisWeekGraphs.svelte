@@ -1,6 +1,6 @@
 <script>
-    import BarChart from "../../../components/BarChart.svelte";
-    import { arrowsShotThisWeek, maxScoresThisWeek, sessionsThisWeek } from "../../../stores/sessions";
+    import BarChart from "@components/BarChart.svelte";
+    import { arrowsShotThisWeek, maxScoresThisWeek, sessionsThisWeek } from "@stores/sessions";
     $: arrowsShot = [...$arrowsShotThisWeek.entries()].map(([key, val]) => ({ name: key, value: val }))
     $: maxScores = [...$maxScoresThisWeek.entries()].map(([key, val]) => ({ name: key, value: val }))
     $: sessions = [...$sessionsThisWeek.entries()].map(([key, val]) => ({ name: key, value: val }))

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { sessionsStore } from "../../../stores/sessions";
+    import { sessionsStore } from "@stores/sessions";
     import { DateTime } from "luxon";
     import type { Point } from "../../../types";
-    import CircularButton from "../../../components/CircularButton.svelte";
+    import CircularButton from "@components/CircularButton.svelte";
     import qrCode from "../../../qr-code.svg";
 
     function download(filename : string, data : string) {

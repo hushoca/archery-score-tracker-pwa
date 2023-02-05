@@ -1,11 +1,11 @@
 <script lang="ts">
-    import Check from "../icons/Check.svelte";
-    import LineChart from "../icons/LineChart.svelte";
-    import Play from "../icons/Play.svelte";
-    import Plus from "../icons/Plus.svelte";
-    import Return from "../icons/Return.svelte";
-    import Settings from "../icons/Settings.svelte";
-    import X from "../icons/X.svelte";
+    import Check from "@icons/Check.svelte";
+    import LineChart from "@icons/LineChart.svelte";
+    import Play from "@icons/Play.svelte";
+    import Plus from "@icons/Plus.svelte";
+    import Return from "@icons/Return.svelte";
+    import Settings from "@icons/Settings.svelte";
+    import X from "@icons/X.svelte";
 
     const icons = {
         "plus": Plus,
