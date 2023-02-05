@@ -34,4 +34,3 @@ export type Days = typeof allDays[number];
 
 export const allMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
 export type Months = typeof allMonths[number];
-

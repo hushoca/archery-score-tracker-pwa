@@ -8,9 +8,17 @@ interface SessionStore {
     sessions : Session[];
 }
 
-export const sessionsStore = persist(writable<SessionStore>({ sessions: [] }), "sessions", 1);
+export const sessionsStore = persist({
+    writable: writable<SessionStore>({ sessions: [] }), 
+    name: "sessions", 
+    version: 1
+});
 
-export const activeSession = persist(writable<Session | null>(null), "activeSession", 1);
+export const activeSession = persist({
+    writable: writable<Session | null>(null), 
+    name: "activeSession", 
+    version: 1
+});
 
 export function completeSession() {
     const activeSess = get(activeSession);
