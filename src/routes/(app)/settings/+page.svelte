@@ -4,6 +4,7 @@
     import type { Set } from "../../../types";
     import CircularButton from "@components/CircularButton.svelte";
     import qrCode from "../../../qr-code.svg";
+    import { version } from "$app/environment";
 
     function download(filename : string, data : string) {
         const blob = new Blob([data], {type: 'text/csv'});
@@ -35,7 +36,11 @@
     }
 </script>
 
-<div class="p-4">
+<div class="p-4 grid gap-2">
+    <div>
+        <span class="font-bold">Version: </span>
+        <span>0x{parseInt(version).toString(16)}</span>
+    </div>
     <button class="p-2 bg-blue-700 text-blue-50 rounded-md flex items-center justify-center flex-grow w-full" on:click={exportData}>Download Your Data</button>
     <div class="flex flex-col items-center p-4">
         <h1 class="font-bold text-xl">Share with a friend:</h1>
