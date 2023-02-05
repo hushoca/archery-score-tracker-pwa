@@ -9,12 +9,13 @@ export const allPoints = {
    7:  { point: 7, color: "#c21737" },
    8:  { point: 8, color: "#c21737" },
    9:  { point: 9, color: "#d69824" },
+   10: { point: 10, color: "#d69824" },
    "X": { point: 10, color: "#d69824" }
 }
 
 export type Point = keyof typeof allPoints;
 
-export const orderedPoints = [ "M", 1, 2, 3, 4, 5, 6, 7, 8, 9, "X" ] as const;
+export const orderedPoints = [ "M", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "X" ] as const;
 
 export interface Session {
     id: string;
