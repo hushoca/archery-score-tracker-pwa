@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import CircularButton from "../../components/CircularButton.svelte";
-    import { activeSession } from "../../stores/sessions";
+    import CircularButton from "../../../components/CircularButton.svelte";
+    import { activeSession } from "../../../stores/sessions";
     import { DateTime } from "luxon"
     import { v4 as newGuid } from "uuid"
 

@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { sessionsStore } from "../../stores/sessions";
-    import { DateTime } from "luxon"
-    import type { Point } from "../../types";
-    import CircularButton from "../../components/CircularButton.svelte";
+    import { sessionsStore } from "../../../stores/sessions";
+    import { DateTime } from "luxon";
+    import type { Point } from "../../../types";
+    import CircularButton from "../../../components/CircularButton.svelte";
+    import qrCode from "../../../qr-code.svg";
 
     function download(filename : string, data : string) {
         const blob = new Blob([data], {type: 'text/csv'});
@@ -36,6 +37,10 @@
 
 <div class="p-4">
     <button class="p-2 bg-blue-700 text-blue-50 rounded-md flex items-center justify-center flex-grow w-full" on:click={exportData}>Download Your Data</button>
+    <div class="flex flex-col items-center p-4">
+        <h1 class="font-bold text-xl">Share with a friend:</h1>
+        <img src={qrCode} alt="Install App QR" class="w-56" />
+    </div>
 </div>
 <footer class="fixed left-0 right-0 bottom-0 pb-4 flex justify-center gap-2 items-end">
     <CircularButton icon="return" color="gray" href="/" />

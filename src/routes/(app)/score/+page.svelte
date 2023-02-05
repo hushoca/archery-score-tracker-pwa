@@ -1,11 +1,11 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
-    import AddScoreModal from '../../components/AddScoreModal.svelte';
-    import CircularButton from "../../components/CircularButton.svelte";
-    import Set from "../../components/Set.svelte"
-    import { activeSession } from '../../stores/sessions';
-    import { allPoints, type Point } from '../../types';
+    import AddScoreModal from '../../../components/AddScoreModal.svelte';
+    import CircularButton from "../../../components/CircularButton.svelte";
+    import Set from "../../../components/Set.svelte"
+    import { activeSession } from '../../../stores/sessions';
+    import { allPoints, type Point } from '../../../types';
     import { DateTime } from "luxon"
 
     let setCount = $activeSession!.setCount;
