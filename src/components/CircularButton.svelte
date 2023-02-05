@@ -5,6 +5,7 @@
     import Plus from "@icons/Plus.svelte";
     import Return from "@icons/Return.svelte";
     import Settings from "@icons/Settings.svelte";
+    import Trash from "@icons/Trash.svelte";
     import X from "@icons/X.svelte";
 
     const icons = {
@@ -14,7 +15,8 @@
         "play": Play,
         "return": Return,
         "x": X,
-        "check": Check
+        "check": Check,
+        "trash": Trash
     }
 
     type Icon = keyof typeof icons;

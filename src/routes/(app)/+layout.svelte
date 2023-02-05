@@ -10,9 +10,6 @@
 
 <main class="text-blue-900 bg-gradient-to-b from-blue-100 min-h-screen to-blue-300 overflow-auto">
     {#if $mobile}
-        <header>
-            <h1 class="text-3xl text-center p-2 pt-5 font-bold">Archery Score Tracker</h1>
-        </header>
         <slot />
     {:else}
         <div class="flex flex-col items-center p-4 gap-4 text-center">

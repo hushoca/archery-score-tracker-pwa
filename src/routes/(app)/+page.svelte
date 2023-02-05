@@ -23,7 +23,7 @@
     <section class="bg-blue-50 rounded-lg shadow-lg p-2 col-start-1 col-end-3 h-full row-start-2 row-end-3">
         <div class="text-xl font-bold">Sessions</div>
         {#each $sessionsStore.sessions as session}
-            <SessionElem {session} on:delete={() => deleteSession(session.id)} />
+            <SessionElem {session} />
         {:else}
             <span>No previous sessions were found.<br/> Go start shooting you lazy bum!</span>
         {/each}

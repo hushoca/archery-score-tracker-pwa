@@ -26,7 +26,7 @@ export function completeSession() {
     activeSess.finishedAt = DateTime.now().toMillis();
     let score = 0;
     activeSess.sets.forEach(set => {
-        set.forEach(point => score += allPoints[point].point);
+        score += set.total;
     });
     activeSess.score = score;
     sessionsStore.update(store => ({ sessions: [...store.sessions, activeSess]}));

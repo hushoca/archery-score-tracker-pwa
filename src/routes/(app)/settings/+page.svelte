@@ -1,7 +1,7 @@
 <script lang="ts">
     import { sessionsStore } from "@stores/sessions";
     import { DateTime } from "luxon";
-    import type { Point } from "../../../types";
+    import type { Set } from "../../../types";
     import CircularButton from "@components/CircularButton.svelte";
     import qrCode from "../../../qr-code.svg";
 
@@ -15,10 +15,10 @@
         document.body.removeChild(elem);
     }
 
-    function formatSets(arrows : Point[][], arrowsPerSet : number) { 
+    function formatSets(sets : Set[], arrowsPerSet : number) { 
         let str = "";
-        arrows.forEach((arrows, index) => {
-            str += arrows.join(",") + "\n"
+        sets.forEach(set => {
+            str += set.points.join(",") + "\n"
         });
         return str.replace(/\n$/, "");
     }

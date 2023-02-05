@@ -17,6 +17,12 @@ export type Point = keyof typeof allPoints;
 
 export const orderedPoints = [ "M", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "X" ] as const;
 
+export interface Set {
+    recordedAt : number;
+    total: number;
+    points: Point[];
+}
+
 export interface Session {
     id: string;
     arrowsPerSet: number;
@@ -24,7 +30,7 @@ export interface Session {
     name?: string;
     startedAt : number;
     finishedAt? : number;
-    sets: Point[][];
+    sets: Set[];
     score: number;
 }
 

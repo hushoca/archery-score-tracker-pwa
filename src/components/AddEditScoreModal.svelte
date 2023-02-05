@@ -6,7 +6,9 @@
 
     const dispatch = createEventDispatcher();
     
-    let points : Point[] = [];
+    export let points : Point[] = [];
+    export let title : string;
+    export let mode : "Edit" | "Add";
     export let arrowCount : number;
 
     function addPoint(p : Point) {
@@ -21,7 +23,7 @@
 
 <div class="bg-black bg-opacity-20 fixed inset-0 flex justify-center items-center p-8">
     <div class="bg-blue-50 rounded-lg shadow-lg p-2 w-full">
-        <h1 class="font-bold text-lg border-b-2 border-b-blue-900 w-full text-center col-start-1 col-end-3">New Set</h1>
+        <h1 class="font-bold text-lg border-b-2 border-b-blue-900 w-full text-center col-start-1 col-end-3">{title}</h1>
         <div class="flex flex-wrap gap-2 p-4 justify-evenly text-xl text-center border-b-2 border-b-blue-900">
             {#each points as point, index}
                 <button class="border-4 font-bold rounded-full aspect-square w-10 flex items-center justify-center text-lg"
@@ -45,12 +47,19 @@
             </div>
         {:else}
             <div class="text-center p-2">
-                Click the continue button below to save this set. Or the back button to discard it.
+                {#if mode == "Add"}
+                    Click the confirm button below to add this set or click the back button to discard it.
+                {:else if mode == "Edit"}
+                    Click the confirm button below to edit the set or click the back button to discard interface.
+                {/if}
             </div>
         {/if}
     </div>
 </div>
 <footer class="pb-4 shadow-sm flex justify-center gap-2 items-end fixed bottom-0 w-full">
+    {#if mode == "Edit"}
+        <CircularButton icon="trash" color="red" on:click={() => dispatch("delete")} />
+    {/if}
     <CircularButton icon="return" color="gray" on:click={() => dispatch("discard")} />
     {#if arrowCount == points.length}
         <CircularButton icon="check" color="emerald" on:click={() => dispatch("done", points)}/>

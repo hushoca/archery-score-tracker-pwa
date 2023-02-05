@@ -36,17 +36,18 @@
     let name : string = `${today} ${timePeriod}`;
 </script>
 
-<main class="flex flex-col gap-4 grow p-2 text-center items-center">
-    <section class="bg-blue-50 rounded-lg shadow-lg p-2 px-6 grid grid-cols-[1fr_1fr] gap-2 text-left items-center">
+<main class="flex flex-col gap-2 grow p-2 text-center items-center">
+    <h1 class="font-bold text-lg">Start a New Session</h1>
+    <section class="bg-blue-50 rounded-lg shadow-lg p-4 px-6 grid grid-cols-[1fr_1fr] gap-2 text-left items-center">
             <span class="font-bold">Name:</span>
-            <input type="text" bind:value={name} class="bg-gradient-to-b from-blue-50 to-blue-100 border rounded-md border-blue-700 p-1 w-full" />
+            <input type="text" bind:value={name} class="bg-gradient-to-b from-blue-50 to-blue-100 border rounded-sm border-blue-700 p-1 w-full" />
             <span class="font-bold">Arrows (per set):</span>
-            <select bind:value={arrows} class="bg-gradient-to-b from-blue-50 to-blue-100 border rounded-md border-blue-700 p-1 text-center">
+            <select bind:value={arrows} class="bg-gradient-to-b from-blue-50 to-blue-100 border rounded-sm border-blue-700 p-1 text-center">
                 <option value={3}>3</option>
                 <option value={6}>6</option>
             </select>
             <span class="font-bold">Total Sets:</span>
-            <select bind:value={sets} class="bg-gradient-to-b from-blue-50 to-blue-100 border rounded-md border-blue-700 p-1 text-center">
+            <select bind:value={sets} class="bg-gradient-to-b from-blue-50 to-blue-100 border rounded-sm border-blue-700 p-1 text-center">
                 <option value={5}>5</option>
                 <option value={10}>10</option>
                 <option value={15}>15</option>
