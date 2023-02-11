@@ -1,6 +1,10 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { completeSession } from "@stores/sessions";
-    completeSession();
-    goto("/")
+    import { completeSessionAsync } from "@stores/sessions";
+    import { onMount } from "svelte";
+    onMount(() => {
+        completeSessionAsync().then(() => goto("/"));
+    })
 </script>
+
+<div class="text-center">Saving...</div>

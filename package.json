@@ -28,6 +28,7 @@
 	"type": "module",
 	"dependencies": {
 		"humanize-duration": "^3.28.0",
+		"idb": "^7.1.1",
 		"luxon": "^3.2.1",
 		"mobile-detect": "^1.4.5",
 		"uuid": "^9.0.0"
