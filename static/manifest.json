@@ -5,10 +5,10 @@
     "start_url": "/",
     "icons": [
       {
-        "src": "favicon.svg",
-        "type": "image/svg+xml",
+        "src": "maskable.png",
+        "type": "image/png",
         "sizes": "any",
-        "purpose": "any"
+        "purpose": "maskable any"
       }
     ],
     "display": "standalone",
