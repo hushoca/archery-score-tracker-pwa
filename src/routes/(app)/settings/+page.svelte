@@ -1,10 +1,9 @@
 <script lang="ts">
-    import { sessionsStore } from "@stores/sessions";
     import { DateTime } from "luxon";
-    import type { Set } from "../../../types";
     import CircularButton from "@components/CircularButton.svelte";
     import qrCode from "../../../qr-code.svg";
     import { version } from "$app/environment";
+    import { getDataCSVAsync } from "@stores/sessions";
 
     function download(filename : string, data : string) {
         const blob = new Blob([data], {type: 'text/csv'});
@@ -16,22 +15,9 @@
         document.body.removeChild(elem);
     }
 
-    function formatSets(sets : Set[], arrowsPerSet : number) { 
-        let str = "";
-        sets.forEach(set => {
-            str += set.points.join(",") + "\n"
-        });
-        return str.replace(/\n$/, "");
-    }
-
-    function exportData() {
-        let csv = `"session_name","started_at","finished_at","sets","arrows_per_set","set_count","total_score",\n`;
-        $sessionsStore.sessions.forEach(s => {
-            const startedAt = DateTime.fromMillis(s.startedAt).toISO();
-            const finishedAt = DateTime.fromMillis(s.finishedAt!).toISO();
-            csv += `"${s.name?.replaceAll('"', '""')}","${startedAt}","${finishedAt}","${formatSets(s.sets, s.arrowsPerSet)}","${s.arrowsPerSet}","${s.setCount}","${s.score}",\n`;
-        })
+    async function exportData() {
         const fileExportDateTime = DateTime.now().toISO();
+        const csv = await getDataCSVAsync();
         download(`data_${fileExportDateTime}.csv`, csv);
     }
 </script>
