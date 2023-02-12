@@ -19,12 +19,21 @@ export async function completeSessionAsync() {
         score += set.total;
     });
     activeSess.score = score;
-    db.sessions.add(activeSess);
+    await db.transaction("readwrite", db.sessions, db.tags, async () => {
+       await db.sessions.add(activeSess);
+       await db.tags.where("id").anyOf(activeSess.tags).modify(t => t.usedBy.push(activeSess.id));
+    });
     activeSession.set(null);
 }
 
 export async function deleteSessionAsync(sessionId: string) {
-    db.sessions.delete(sessionId);
+    await db.transaction("readwrite", db.sessions, db.tags, async () => {
+        await db.sessions.delete(sessionId);
+        await db.tags.where({ usedBy: sessionId }).modify(t => {
+            t.usedBy = t.usedBy.filter(u => u != sessionId);
+            return t;
+        });
+    });
 }
 
 function formatSets(sets : Set[], arrowsPerSet : number) { 

@@ -32,6 +32,13 @@ export interface Session {
     finishedAt? : number;
     sets: Set[];
     score: number;
+    tags: string[];
+}
+
+export interface Tag {
+    id: string;
+    createdAt: number;
+    usedBy: string[];
 }
 
 export const allDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;

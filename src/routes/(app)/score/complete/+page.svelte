@@ -3,7 +3,7 @@
     import { completeSessionAsync } from "@stores/sessions";
     import { onMount } from "svelte";
     onMount(() => {
-        completeSessionAsync().then(() => goto("/"));
+        completeSessionAsync().then(() => goto("/", { replaceState: true }));
     })
 </script>
 

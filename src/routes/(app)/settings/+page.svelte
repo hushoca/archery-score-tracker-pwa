@@ -27,6 +27,7 @@
         <span class="font-bold">Version: </span>
         <span>0x{parseInt(version).toString(16)}</span>
     </div>
+    <a class="p-2 bg-blue-700 text-blue-50 rounded-md flex items-center justify-center flex-grow w-full" href="/manage/tags">Manage Tags</a>
     <button class="p-2 bg-blue-700 text-blue-50 rounded-md flex items-center justify-center flex-grow w-full" on:click={exportData}>Download Your Data</button>
     <div class="flex flex-col items-center p-4">
         <h1 class="font-bold text-xl">Share with a friend:</h1>

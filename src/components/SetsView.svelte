@@ -9,6 +9,7 @@
     export let sets : Set[];
     export let setCount : number | null;
     export let arrowCount : number;
+    export let tags : string[] | undefined = undefined;
 
     export let setClickable : boolean = false;
 
@@ -67,4 +68,9 @@
             {/if}       
         </div>
     </section>
+    {#if tags && tags.length > 0}
+        <section class="bg-blue-50 rounded-lg shadow-lg p-2 px-4 w-full text-left">
+            <span class="font-bold">Tags: </span> {tags.join(", ")}
+        </section>
+    {/if}
 </main>
