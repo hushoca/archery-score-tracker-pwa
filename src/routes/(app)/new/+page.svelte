@@ -17,9 +17,9 @@
             setCount: $newSessionPreferences.sets,
             startedAt: DateTime.now().toMillis(),
             sets: [],
-            tags: []
+            tags: $newSessionPreferences.tags
         });
-        goto(`/score`);
+        goto(`/score`, { replaceState: true });
     }
 
     const now =  DateTime.now();
@@ -35,8 +35,6 @@
     }
 
     let name : string = `${today} ${timePeriod}`;
-
-    let tags = [ "asdasd", "asdasd", "1", "asd"];
 </script>
 
 <main class="flex flex-col gap-2 grow p-2 text-center items-center">
@@ -59,10 +57,10 @@
             </select>
     </section>
     <section class="bg-blue-50 rounded-lg shadow-lg p-4 px-6 text-left items-center w-full">
-        <TagSelector bind:selectedTags={$newSessionPreferences.tags} bind:allTags={tags} />
+        <TagSelector bind:selectedTags={$newSessionPreferences.tags} />
     </section>
     {#if $newSessionPreferences.sets}
-        <section class="bg-blue-50 rounded-lg shadow-lg p-2 px-6 grid grid-cols-[1fr_auto] gap-2 text-left items-center">
+        <section class="bg-blue-50 rounded-lg shadow-lg p-2 py-4 px-6 grid grid-cols-[1fr_auto] gap-2 text-left items-center w-full">
             <span class="font-bold">Max possible score:</span>
             <span>{$newSessionPreferences.arrowsPerSet * $newSessionPreferences.sets * 10}</span>
         </section>
@@ -71,5 +69,4 @@
 <footer class="fixed left-0 right-0 bottom-0 pb-4 flex justify-center gap-2 items-end">
     <CircularButton icon="return" color="gray" href="/"/>
     <CircularButton icon="play" color="emerald" on:click={start}/>
-    <!-- <CircularButton icon="play" size="lg" color="yellow"/> -->
 </footer>

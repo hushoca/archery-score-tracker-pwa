@@ -1,4 +1,7 @@
 import PromptModalBody from "@components/PromptModalBody.svelte";
+import { db } from "@util/db";
+import { DateTime } from "luxon";
+import type { Tag } from "../types";
 import { writable } from "svelte/store";
 import { v4 as newGuid } from "uuid";
 
@@ -87,4 +90,17 @@ export function promptAsync(text : string, title : string = "Please enter value"
     return new Promise<string | null>((resolve, _) => {
         modal.set(new ComponentModal(title, PromptModalBody, resolve, promptButtons, "", { text }));
     });
+}
+
+export async function showAddNewTagModalAsync() {
+    const value = await promptAsync("Enter a value for the new attribute:", "New Attribute");
+    if(value == null || value?.trim() == "") return null;
+    if(await db.tags.get(value) !== undefined) return null;
+    const tag : Tag = { 
+        id: value, 
+        createdAt: DateTime.now().toMillis(), 
+        usedBy: [] 
+    }
+    await db.tags.add(tag);
+    return tag;
 }

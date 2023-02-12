@@ -35,7 +35,7 @@
     async function discard() {
         const shouldDiscard = await confirmAsync("Are you sure you want to discard this session?");
         if(shouldDiscard) {
-            goto("/score/discard");
+            goto("/score/discard", { replaceState: true });
         }
     }
 
@@ -85,7 +85,7 @@
 
     async function completeSession() {
         const shouldComplete = await confirmAsync("Are you sure you want to complete this session?");
-        if(shouldComplete) goto("/score/complete");
+        if(shouldComplete) goto("/score/complete", { replaceState: true });
     }
 </script>
 
@@ -105,7 +105,7 @@
         {#if setCount != sets.length}
             <CircularButton icon="plus"  size="lg" on:click={() => mode = "add"}/>
         {:else}
-            <CircularButton icon="check" color="emerald" size="lg" href="/score/complete"/>
+            <CircularButton icon="check" color="emerald" size="lg" on:click={() => goto("/score/complete", { replaceState: true })}/>
         {/if}
         {#if setCount == null}
             <CircularButton icon="check" color="emerald" size="lg" on:click={completeSession}/>
