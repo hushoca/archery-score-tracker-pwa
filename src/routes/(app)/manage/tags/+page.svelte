@@ -10,7 +10,7 @@
     liveQuery(() => db.tags.toArray()).subscribe(tags.set);
 
     async function deleteTag(tag : Tag) {
-        let msg = `Are you sure you want to delete this tag?`;
+        let msg = `Are you sure you want to delete "${tag.id}"?`;
         if(tag.usedBy.length > 0 ) msg += `\n\nDeleting this tag will also remove it from ${tag.usedBy.length} session(s) it is attached to. This action cannot be reverted!`;
         const shouldDelete = await confirmAsync(msg)
         if(shouldDelete) {
