@@ -1,41 +1,90 @@
-import type { SvelteComponent } from "svelte";
+import PromptModalBody from "@components/PromptModalBody.svelte";
 import { writable } from "svelte/store";
 import { v4 as newGuid } from "uuid";
 
-type Button = {
+interface Button {
     style: "primary" | "secondary";
     name : string;
-    result : any;
 }
 
-type Modal = {
-    id: string;
+interface Modal {
+    id : string;
     title: string;
-    body: string | SvelteComponent,
-    resolve: (result : any) => void,
     buttons: Button[];
+    resolve: (result : any) => void
+    handleButtonClick: (index : number) => void
 }
+
+export class ResolveButton implements Button {
+    constructor(
+        public name : string,
+        public style : "primary" | "secondary",
+        public result : any
+    ) { }
+}
+
+export class ReturnModelButton implements Button {
+    constructor(
+        public name : string,
+        public style : "primary" | "secondary",
+    ) { }
+}
+
+export class TextModal implements Modal {
+    public id: string = newGuid();
+    constructor(
+        public title: string,
+        public text : string,
+        public resolve: (result: any) => void,
+        public buttons: Button[]
+    ) { }
+
+    handleButtonClick(index: number) {
+        const button = this.buttons[index];
+        if(button instanceof ResolveButton) this.resolve(button.result);
+        if(button instanceof ReturnModelButton) throw "Not supported!";
+        modal.set(null);
+    }
+}
+
+export class ComponentModal implements Modal {
+    public id: string = newGuid();
+    constructor(
+        public title: string,
+        public component : any,
+        public resolve: (result: any) => void,
+        public buttons: Button[],
+        public model : any = null,
+        public __props : any = {}
+    ) {}
+
+    handleButtonClick(index: number) {
+        const button = this.buttons[index];
+        if(button instanceof ResolveButton) this.resolve(button.result);
+        if(button instanceof ReturnModelButton) this.resolve(this.model);
+        modal.set(null);
+    }
+}
+
 
 export const modal = writable<Modal | null>(null);
 
-function showModalAsync<T>(title : string, body: string, buttons : Button[]) {
-    return new Promise<T>((resolve, _) => {
-        const resolveProxy = (val : any) => { 
-            resolve(val);
-            modal.set(null);
-        }
-        modal.set({
-            id: newGuid(),
-            body,
-            title,
-            buttons,
-            resolve: resolveProxy
-        });
+const confirmButtons = [
+    new ResolveButton("Cancel", "secondary", false),
+    new ResolveButton("Okay", "primary", true),
+]
+export function confirmAsync( body: any, title : string = "Confirm") {
+    return new Promise<boolean>((resolve, _) => {
+        modal.set(new TextModal(title, body, resolve, confirmButtons));
     });
 }
 
-export const confirmAsync = async (text : string, title : string = "Confirm") =>
-    await showModalAsync<boolean>(title, text, [
-        { name: "Cancel", result: false, style: "secondary" },
-        { name: "Ok", result: true, style: "primary" }
-    ])
+const promptButtons = [
+    new ResolveButton("Cancel", "secondary", null),
+    new ReturnModelButton("Done", "primary"), 
+]
+export function promptAsync(text : string, title : string = "Please enter value") {
+    return new Promise<string | null>((resolve, _) => {
+        modal.set(new ComponentModal(title, PromptModalBody, resolve, promptButtons, "", { text }));
+    });
+}
