@@ -40,7 +40,7 @@
             <span></span>
             {#each $tags as tag}
                 <span class="overflow-hidden text-ellipsis">{tag.id}</span>
-                <span class="text-center">{tag.usedBy.length} set(s)</span>
+                <span class="text-center">{tag.usedBy.length} session(s)</span>
                 <div class="text-right">
                     <button class="bg-red-600 text-blue-50 p-1 aspect-square rounded-full" on:click={() => deleteTag(tag)}>
                         <X/>
