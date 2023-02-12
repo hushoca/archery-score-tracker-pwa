@@ -1,6 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import CircularButton from "@components/CircularButton.svelte";
+    import TagSelector from "@components/TagSelector.svelte";
+    import Plus from "@icons/Plus.svelte";
     import { newSessionPreferences } from "@stores/newSessionPreferences";
     import { activeSession } from "@stores/sessions";
     import { DateTime } from "luxon"
@@ -14,7 +16,8 @@
             arrowsPerSet: $newSessionPreferences.arrowsPerSet,
             setCount: $newSessionPreferences.sets,
             startedAt: DateTime.now().toMillis(),
-            sets: [] 
+            sets: [],
+            tags: []
         });
         goto(`/score`);
     }
@@ -32,6 +35,8 @@
     }
 
     let name : string = `${today} ${timePeriod}`;
+
+    let tags = [ "asdasd", "asdasd", "1", "asd"];
 </script>
 
 <main class="flex flex-col gap-2 grow p-2 text-center items-center">
@@ -52,6 +57,9 @@
                 <option value={20}>20</option>
                 <option value={null}>No Limit</option>
             </select>
+    </section>
+    <section class="bg-blue-50 rounded-lg shadow-lg p-4 px-6 text-left items-center w-full">
+        <TagSelector bind:selectedTags={$newSessionPreferences.tags} bind:allTags={tags} />
     </section>
     {#if $newSessionPreferences.sets}
         <section class="bg-blue-50 rounded-lg shadow-lg p-2 px-6 grid grid-cols-[1fr_auto] gap-2 text-left items-center">
