@@ -9,7 +9,7 @@
     export let data : PageData;
 </script>
 
-<main class="grid grid-cols-2 grid-rows-[auto_1fr] gap-3 grow p-4 text-center items-start pb-28">
+<main class="grid grid-cols-2 grid-rows-[auto_1fr] gap-3 grow p-4 text-center items-start">
     <section class="bg-blue-50 rounded-lg shadow-lg p-2 grid grid-cols-[3fr_1fr]">
         <div class="text-lg font-bold col-start-1 col-end-3">All Time</div>
         <div class="text-left font-bold">Arrows:</div>      <div class="text-right">{data.totalsAllTime.totalArrows}</div>

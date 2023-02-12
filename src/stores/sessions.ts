@@ -1,4 +1,4 @@
-import { allDays, allMonths, type Days, type Months, type Session, type Set } from "../types";
+import { allDays, allMonths, type Days, type DefaultReportData, type Months, type Session, type Set } from "../types";
 import { persist } from "@util/persist";
 import { get, writable } from "svelte/store";
 import { DateTime, type DateTimeUnit } from "luxon"
@@ -104,13 +104,6 @@ export async function getTotalsFor(limitUnit : DateTimeUnit | "allTime") {
         totalSessions,
         highestScore
     }
-}
-
-
-type DefaultReportData = { 
-    arrowsShot : number, 
-    sessions: number, 
-    maxScore: number 
 }
 
 export async function getReportDataForYearAsync() {

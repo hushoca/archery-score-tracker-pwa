@@ -7,7 +7,7 @@
 
 </script>
 
-<main class="p-3 pb-28 flex flex-col gap-2">
+<main class="p-3 pb-24 flex flex-col gap-2">
     <div class="text-xl font-bold text-center">Sessions</div>
     {#each data.sessions as [date, sessions]}
         <section class="bg-blue-50 rounded-lg shadow-lg p-2 col-start-1 col-end-3 h-full row-start-2 row-end-3">

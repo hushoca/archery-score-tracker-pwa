@@ -23,6 +23,18 @@ export interface Set {
     points: Point[];
 }
 
+export type DefaultReportData = { 
+    arrowsShot : number;
+    sessions: number;
+    maxScore: number;
+}
+
+export type ExtendedReportData = DefaultReportData & {
+    arrowsMissed : number;
+    avgAccuracy: number;
+    totalPointsScored : number;
+}
+
 export interface Session {
     id: string;
     arrowsPerSet: number;

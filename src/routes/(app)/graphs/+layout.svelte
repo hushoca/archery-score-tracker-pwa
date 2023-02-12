@@ -9,8 +9,9 @@
     <div class="grid grid-flow-col auto-cols-fr gap-1">
         <TabButton value="This Year" href="/graphs" active={path == "/graphs"}/>
         <TabButton value="This Week" href="/graphs/week" active={path == "/graphs/week"}/>
+        <TabButton value="Custom" href="/graphs/custom" active={path == "/graphs/custom"}/>
     </div>
-    <div>
+    <div class="pb-24">
         <slot />
     </div>
 </div>

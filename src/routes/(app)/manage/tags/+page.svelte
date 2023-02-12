@@ -6,6 +6,7 @@
     import { writable } from "svelte/store";
     import X from "@icons/X.svelte";
     import { confirmAsync, showAddNewTagModalAsync } from "@stores/modal";
+    import { newSessionPreferences } from "@stores/newSessionPreferences";
     let tags = writable<Tag[]>([]);
     liveQuery(() => db.tags.toArray()).subscribe(tags.set);
 
@@ -21,6 +22,10 @@
                     return s;
                 })
             });
+            newSessionPreferences.update(nsp => {
+                nsp.tags = nsp.tags.filter(t => t != tag.id)
+                return nsp;
+            })
         }
     }
 

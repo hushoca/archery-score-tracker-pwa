@@ -2,7 +2,9 @@
     import { goto } from "$app/navigation";
     import CircularButton from "@components/CircularButton.svelte";
     import TagSelector from "@components/TagSelector.svelte";
+    import MoreVertical from "@icons/MoreVertical.svelte";
     import Plus from "@icons/Plus.svelte";
+    import { showAddNewTagModalAsync } from "@stores/modal";
     import { newSessionPreferences } from "@stores/newSessionPreferences";
     import { activeSession } from "@stores/sessions";
     import { DateTime } from "luxon"
@@ -34,6 +36,16 @@
         timePeriod = "evening";
     }
 
+    async function addNewTag() {
+        const value = await showAddNewTagModalAsync();
+        if(value != null) {
+            newSessionPreferences.update(p => {
+                p.tags.push(value.id);
+                return p;
+            })
+        }
+    }
+
     let name : string = `${today} ${timePeriod}`;
 </script>
 
@@ -57,7 +69,18 @@
             </select>
     </section>
     <section class="bg-blue-50 rounded-lg shadow-lg p-4 px-6 text-left items-center w-full">
-        <TagSelector bind:selectedTags={$newSessionPreferences.tags} />
+        <div class="flex gap-1 border-b border-b-blue-700 pb-2">
+            <span class="font-bold text-lg grow">Tags</span>
+            <button class="bg-blue-700 text-blue-50 flex items-center aspect-square px-2 rounded-full" on:click={addNewTag}>
+                <Plus/>
+            </button>
+            <a class="bg-blue-700 text-blue-50 flex items-center aspect-square px-2 rounded-full" href="/manage/tags">
+                <MoreVertical/>
+            </a>
+        </div>
+        <div class="p-2 pt-4">
+            <TagSelector bind:selectedTags={$newSessionPreferences.tags} />
+        </div>
     </section>
     {#if $newSessionPreferences.sets}
         <section class="bg-blue-50 rounded-lg shadow-lg p-2 py-4 px-6 grid grid-cols-[1fr_auto] gap-2 text-left items-center w-full">
