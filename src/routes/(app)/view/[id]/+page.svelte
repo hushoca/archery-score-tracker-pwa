@@ -6,6 +6,7 @@
     import { page } from '$app/stores';
     import { goto } from "$app/navigation";
     import type { PageData } from "./$types";
+    import { confirmAsync } from "@stores/modal";
 
     const id = $page.params.id as string;
 
@@ -18,7 +19,8 @@
 
 
     async function remove() { 
-        if(confirm("Are you sure you want to delete this session?")) {
+        const shouldRemove = await confirmAsync("Are you sure you want to delete this session?");
+        if(shouldRemove) {
             await deleteSessionAsync(id);
             goto("/");
         }

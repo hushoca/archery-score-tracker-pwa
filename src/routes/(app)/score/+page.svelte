@@ -7,6 +7,7 @@
     import { allPoints, type Point, type Set, type Session } from "../../../types";
     import { DateTime } from "luxon"
     import SetsView from "@components/SetsView.svelte";
+    import { confirmAsync } from "@stores/modal";
 
     let setCount = $activeSession!.setCount;
     let arrowCount = $activeSession!.arrowsPerSet;
@@ -31,8 +32,9 @@
         mode = "hidden";
     }
 
-    function discard() {
-        if(confirm("Are you sure you want to discard this session?")) {
+    async function discard() {
+        const shouldDiscard = await confirmAsync("Are you sure you want to discard this session?");
+        if(shouldDiscard) {
             goto("/score/discard");
         }
     }
@@ -70,14 +72,20 @@
         mode = "hidden";
     }
 
-    function deleteSet() {
-        if(confirm("Are you sure you want to remove this set?")) {
+    async function deleteSet() {
+        const shouldDelete = await confirmAsync("Are you sure you want to remove this set?");
+        if(shouldDelete) {
             activeSession.update(session => ({
                 ...session,
                 sets: session!.sets.filter((set, index) => index != editSetIndex)
             } as Session))
             mode = "hidden";
         }
+    }
+
+    async function completeSession() {
+        const shouldComplete = await confirmAsync("Are you sure you want to complete this session?");
+        if(shouldComplete) goto("/score/complete");
     }
 </script>
 
@@ -100,7 +108,7 @@
             <CircularButton icon="check" color="emerald" size="lg" href="/score/complete"/>
         {/if}
         {#if setCount == null}
-            <CircularButton icon="check" color="emerald" size="lg" on:click={() => confirm("Are you sure you want to complete this session?") && goto("/score/complete")}/>
+            <CircularButton icon="check" color="emerald" size="lg" on:click={completeSession}/>
         {/if}
         <CircularButton icon="x" color="red" on:click={discard} />
     </footer>

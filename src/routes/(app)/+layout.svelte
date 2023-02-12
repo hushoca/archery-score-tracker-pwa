@@ -4,6 +4,7 @@
     import { mobile } from "@stores/mobile";
     import { navigating } from '$app/stores'
     import LoadingSpinner from "@components/LoadingSpinner.svelte";
+    import ModalHandler from "@components/ModalHandler.svelte";
 </script>
 
 <svelte:head>
@@ -32,5 +33,6 @@
                 </div>
             </div>
         {/if}
+        <ModalHandler />
     </main>
 {/if}
