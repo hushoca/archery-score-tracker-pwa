@@ -3,6 +3,8 @@
     import CircularButton from "@components/CircularButton.svelte";
     import type { PageData } from "./$types";
     import { activeSession } from "@stores/sessions";
+    import { db } from "@util/db";
+    import { liveQuery } from "dexie"
 
     export let data : PageData;
 </script>

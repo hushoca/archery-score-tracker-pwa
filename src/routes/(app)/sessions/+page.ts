@@ -1,7 +1,7 @@
-import { getAllSessionsGroupedByMonthAsync } from "@stores/sessions";
+import { getLastYearsSessionsGroupedByMonthAsync } from "@stores/sessions";
 
 export async function load() {
     return {
-        sessions : getAllSessionsGroupedByMonthAsync()
+        sessions : getLastYearsSessionsGroupedByMonthAsync()
     }
 }
