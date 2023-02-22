@@ -48,7 +48,7 @@
             <h1 class="text-2xl">Score Tracking App</h1>
         </header>
         <div class="text-center">
-            Despite the abundance of archery score tracking applications available on the market, none have met my specific requirements. Consequently, I developed an application that offers features such as score and time tracking, graph generation, and the option to export scores as CSV files. To install this app on your mobile phone, please visit the revisit this address and click on the installation prompt that appears on page load.
+            Despite the abundance of archery score tracking applications available on the market, none have met my specific requirements. Consequently, I developed an application that offers features such as score and time tracking, graph generation, and the option to export scores as CSV files. To install this app on your phone, please visit this address on your phone and click on the installation prompt that appears on page load.
         </div>
         <div class="flex items-center justify-center gap-2 p-4 px-8">
             {#each pictures as pic (pic)}
