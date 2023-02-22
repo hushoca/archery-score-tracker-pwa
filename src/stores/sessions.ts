@@ -63,7 +63,7 @@ export async function getLastXSessionsAsync(noOfSessionsToReturn : number) {
 }
 
 export async function getSessionAsync(id : string) {
-    return db.sessions.get(id);
+    return await db.sessions.get(id);
 }
 
 export async function getLastYearsSessionsGroupedByMonthAsync() {
