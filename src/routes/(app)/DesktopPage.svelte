@@ -42,9 +42,9 @@
 </script>
 
 <main class="bg-gradient-to-b from-slate-200 to-slate-300 min-h-screen">
-    <div class="pt-10 flex flex-col items-center gap-5 w-2/3 mx-auto">
+    <div class="p-10 flex flex-col items-center gap-5 w-2/3 mx-auto">
         <header class="flex flex-col items-center justify-center">
-            <img src="./favicon.png" class="w-20" alt="Banner" />
+            <img src="./favicon.png" class="w-36" alt="Banner" />
             <h1 class="text-2xl">Score Tracking App</h1>
         </header>
         <div class="text-center">
@@ -58,8 +58,8 @@
             {/each}
         </div>
         {#if activePicture}
-            <button class="flex flex-col absolute inset-0 bg-opacity-30 bg-black items-center justify-center p-5 gap-5 cursor-pointer w-full" on:click={() => changePic(null)}>
-                <img src={activePicture} alt="Screenshot" loading="lazy" class="drop-shadow-lg rounded-md h-full relative" in:receive="{{key: activePicture}}" out:send="{{key: activePicture}}">
+            <button class="flex flex-col fixed inset-0 bg-opacity-30 bg-black items-center justify-center w-full" on:click={() => changePic(null)}>
+                <img src={activePicture} alt="Screenshot" loading="lazy" class="h-screen p-5 drop-shadow-lg rounded-md" in:receive="{{key: activePicture}}" out:send="{{key: activePicture}}">
             </button>
         {/if}
         <div class="flex flex-col items-center justify-center gap-2">
